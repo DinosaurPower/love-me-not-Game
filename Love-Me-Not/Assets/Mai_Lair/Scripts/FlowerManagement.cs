@@ -19,7 +19,17 @@ public class FlowerManagement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        for (int i = 0; i<petals.Length; i++){
+            if (Input.GetKeyDown(keycode[i])&&petals[i].activeSelf){
+                Debug.Log("Petal "+ keycode[i].ToString()+" is active");
+            }
+            if (Input.GetKeyDown(keycode[i])){
+                Debug.Log(keycode[i].ToString());
+            }
+        }
         
+
     }
 }
 }
+
