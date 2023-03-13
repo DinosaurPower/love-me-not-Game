@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 namespace godzillabanana{
@@ -10,24 +11,33 @@ public class FlowerManagement : MonoBehaviour
     public KeyCode[] keycode;
     public TMP_Text Divination;
     public string[] divinationOptions;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
+    private int FlowerFaceValue;
+    public Sprite[] calmFaces;
+    public Sprite agFace;
+    public Image flowerFace;
+   
+   void Start(){
+    FlowerFaceValue = 0;
+   }
     void Update()
     {
         for (int i = 0; i<petals.Length; i++){
             if (Input.GetKeyDown(keycode[i])&&petals[i].activeSelf){
-                Debug.Log("Petal "+ keycode[i].ToString()+" is active");
+                petals[i].SetActive(false);
+                Divination.text = divinationOptions[Random.Range(0, divinationOptions.Length)];
+                 FlowerFaceValue++;
+                 flowerFace.sprite = agFace;
+             
+            }
+            if (Input.GetKeyUp(keycode[i])){
+                flowerFace.sprite = calmFaces[FlowerFaceValue];
             }
             if (Input.GetKeyDown(keycode[i])){
-                Debug.Log(keycode[i].ToString());
+                Debug.Log("Petal "+keycode[i].ToString()+" is inactive");
             }
         }
         
+
 
     }
 }
