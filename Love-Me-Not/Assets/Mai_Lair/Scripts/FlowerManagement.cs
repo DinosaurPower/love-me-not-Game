@@ -15,6 +15,8 @@ public class FlowerManagement : MonoBehaviour
     public Sprite[] calmFaces;
     public Sprite agFace;
     public Image flowerFace;
+    public GameObject petalAnim;
+    public GameObject animCenter;
    
    void Start(){
     FlowerFaceValue = 0;
@@ -27,6 +29,11 @@ public class FlowerManagement : MonoBehaviour
                 Divination.text = divinationOptions[Random.Range(0, divinationOptions.Length)];
                  FlowerFaceValue++;
                  flowerFace.sprite = agFace;
+                 animCenter.GetComponent<Transform>().position = petals[i].GetComponent<Transform>().position;
+                  animCenter.GetComponent<Transform>().rotation = petals[i].GetComponent<Transform>().rotation;
+                 GameObject petal = Instantiate(petalAnim, new Vector3(petals[i].GetComponent<Transform>().position.x, petals[i].GetComponent<Transform>().position.y, petals[i].GetComponent<Transform>().position.z), Quaternion.Euler(0, 0, petals[i].GetComponent<Transform>().rotation.z)) as GameObject;
+                 petal.transform.SetParent (GameObject.FindGameObjectWithTag("Canvas").transform, false);
+
              
             }
             if (Input.GetKeyUp(keycode[i])){
