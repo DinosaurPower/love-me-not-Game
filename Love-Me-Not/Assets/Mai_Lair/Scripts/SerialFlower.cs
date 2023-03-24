@@ -68,17 +68,15 @@ public class SerialFlower : MonoBehaviour
             {
 
                 for (int i = 0; i<strEul.Length; i++){
-                    float readout = float.Parse(strEul[i]);
-                    
+                   
+
                 }
                 //5. insert your game logic here
                 float readout = float.Parse(strEul[0]);
-                readout = Mathf.Clamp(readout, 200f, 824f);
-                readout = map(readout, 200f, 824f, -0f, 1f);
-               
+                
                 
               
-                if (readout > 0.65f && !close)
+                if (readout > 0.65f)
                 {
                    
                     close = true;
