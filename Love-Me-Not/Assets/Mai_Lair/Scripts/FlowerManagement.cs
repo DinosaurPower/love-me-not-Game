@@ -23,6 +23,7 @@ public class FlowerManagement : MonoBehaviour
    }
     void Update()
     {
+        
         for (int i = 0; i<petals.Length; i++){
             if (Input.GetKeyDown(keycode[i])&&petals[i].activeSelf){
                 petals[i].SetActive(false);
@@ -44,9 +45,37 @@ public class FlowerManagement : MonoBehaviour
             }
         }
         
-
-
     }
-}
-}
 
+    public void Pluck(int c){
+         for (int i = 0; i<petals.Length; i++){
+            if (petals[c].activeSelf){
+                petals[c].SetActive(false);
+                Divination.text = divinationOptions[Random.Range(0, divinationOptions.Length)];
+                 FlowerFaceValue++;
+                StartCoroutine(faceExpress(FlowerFaceValue));
+                 animCenter.GetComponent<Transform>().position = petals[c].GetComponent<Transform>().position;
+                animCenter.GetComponent<Transform>().rotation = petals[c].GetComponent<Transform>().rotation;
+                 GameObject petal = Instantiate(petalAnim, new Vector3(petals[c].GetComponent<Transform>().position.x, petals[c].GetComponent<Transform>().position.y, petals[c].GetComponent<Transform>().position.z), Quaternion.Euler(0, 0, petals[c].GetComponent<Transform>().rotation.z)) as GameObject;
+                 petal.transform.SetParent (GameObject.FindGameObjectWithTag("Canvas").transform, false);
+
+            
+             }
+           
+
+        }   
+    }
+
+
+    IEnumerator faceExpress(int i){       
+
+        flowerFace.sprite = agFace;
+        yield return new WaitForSeconds(.1f);
+        flowerFace.sprite = agFace;
+        flowerFace.sprite = calmFaces[FlowerFaceValue];
+
+        }
+
+ }
+
+}
