@@ -17,7 +17,7 @@ public class Reset : MonoBehaviour
 
          void Update()
         {
-
+            
             if( (switchSceneWhenSoundIsOver!="") && !Click.isPlaying) {
                 SceneManager.LoadScene(switchSceneWhenSoundIsOver);
                 switchSceneWhenSoundIsOver = "";
@@ -27,7 +27,7 @@ public class Reset : MonoBehaviour
         public void PlayBtn(string game)
         {
 
-
+            Click.time = timer;
             Click.Play();
             switchSceneWhenSoundIsOver = game;
             

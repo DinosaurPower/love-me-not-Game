@@ -18,6 +18,7 @@ public class FlowerManagement : MonoBehaviour
     public GameObject petalAnim;
     public GameObject animCenter;
    public GameObject reset;
+   public RandomSoundScript randSound;
    void Start(){
     FlowerFaceValue = 0;
    }
@@ -27,6 +28,7 @@ public class FlowerManagement : MonoBehaviour
     public void Pluck(int c){
          for (int i = 0; i<petals.Length; i++){
             if (petals[c].activeSelf){
+                randSound.CallAudio();
                 petals[c].SetActive(false);
                 Divination.text = divinationOptions[Random.Range(0, divinationOptions.Length)];
                  FlowerFaceValue++;
@@ -35,6 +37,7 @@ public class FlowerManagement : MonoBehaviour
                 animCenter.GetComponent<Transform>().rotation = petals[c].GetComponent<Transform>().rotation;
                  GameObject petal = Instantiate(petalAnim, new Vector3(petals[c].GetComponent<Transform>().position.x, petals[c].GetComponent<Transform>().position.y, petals[c].GetComponent<Transform>().position.z), Quaternion.Euler(0, 0, petals[c].GetComponent<Transform>().rotation.z)) as GameObject;
                  petal.transform.SetParent (GameObject.FindGameObjectWithTag("Canvas").transform, false);
+                 
                  if (FlowerFaceValue >= 5)
                  {
                     reset.SetActive(true);
