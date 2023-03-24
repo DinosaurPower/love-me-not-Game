@@ -17,7 +17,7 @@ public class FlowerManagement : MonoBehaviour
     public Image flowerFace;
     public GameObject petalAnim;
     public GameObject animCenter;
-   
+   public RandomSoundScript randSound;
    void Start(){
     FlowerFaceValue = 0;
    }
@@ -25,6 +25,7 @@ public class FlowerManagement : MonoBehaviour
     {
         for (int i = 0; i<petals.Length; i++){
             if (Input.GetKeyDown(keycode[i])&&petals[i].activeSelf){
+                randSound.CallAudio();
                 petals[i].SetActive(false);
                 Divination.text = divinationOptions[Random.Range(0, divinationOptions.Length)];
                  FlowerFaceValue++;
