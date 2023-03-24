@@ -17,7 +17,7 @@ public class FlowerManagement : MonoBehaviour
     public Image flowerFace;
     public GameObject petalAnim;
     public GameObject animCenter;
-   
+   public GameObject reset;
    void Start(){
     FlowerFaceValue = 0;
    }
@@ -35,8 +35,10 @@ public class FlowerManagement : MonoBehaviour
                 animCenter.GetComponent<Transform>().rotation = petals[c].GetComponent<Transform>().rotation;
                  GameObject petal = Instantiate(petalAnim, new Vector3(petals[c].GetComponent<Transform>().position.x, petals[c].GetComponent<Transform>().position.y, petals[c].GetComponent<Transform>().position.z), Quaternion.Euler(0, 0, petals[c].GetComponent<Transform>().rotation.z)) as GameObject;
                  petal.transform.SetParent (GameObject.FindGameObjectWithTag("Canvas").transform, false);
-
-            
+                 if (FlowerFaceValue >= 5)
+                 {
+                    reset.SetActive(true);
+                 }
              }
            
 
