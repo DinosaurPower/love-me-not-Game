@@ -5,6 +5,7 @@ using System.Collections;
 using System.IO.Ports;
 using System.Threading;
 
+namespace godzillabanana{
 public class SerialFlower : MonoBehaviour
 {
 
@@ -12,13 +13,14 @@ public class SerialFlower : MonoBehaviour
     private SerialPort serialPort = null; 
     private int baudRate = 115200;  // 2. match your rate from your serial in Arduino
     private int readTimeOut = 100;
-
     private string serialInput;
 
     bool programActive = true;
     Thread thread;
 
     bool close = false;
+
+    public FlowerManagement flowerMango;
 
     void Start()
     {
@@ -38,7 +40,7 @@ public class SerialFlower : MonoBehaviour
         thread = new Thread(new ThreadStart(ProcessData));  // serial events are now handled in a separate thread
         thread.Start();
         
-        //stop the animation from playing setting the speed = 0; 
+       
        
     }
 
@@ -63,30 +65,53 @@ public class SerialFlower : MonoBehaviour
     {
         if (serialInput != null)
         {
-            string[] strEul = serialInput.Split(';');  // 3. splite the data into an arrey using semicolon ' ; '
+            string[] strEul = serialInput.Split(';');  // 3. splite the data into an array using semicolon ' ; '
             if (strEul.Length == 6) // 4. only move forward if every input expected has been received. In this case, was have 2 inputs - a button (0 or 1) and an analog values between 0 and 1023
             {
 
-                for (int i = 0; i<strEul.Length; i++){
-                   
-
-                }
-                //5. insert your game logic here
-                float readout = float.Parse(strEul[0]);
-                
-                
               
-                if (readout > 0.65f)
-                {
-                   
-                    close = true;
-                }
-                if (readout < 0.65f)
-                {
+                //5. insert your game logic here
+                float readout1 = float.Parse(strEul[0]);
+                if (readout1 <0.5f){
+                    flowerMango.Pluck(0);
 
-                    close = false;
+
+                }
+                
+                 float readout2 = float.Parse(strEul[1]);
+                if (readout2 <0.5f){
+                    flowerMango.Pluck(1);
+
+
+                }
+              
+               float readout3 = float.Parse(strEul[2]);
+                if (readout3 <0.5f){
+                    flowerMango.Pluck(2);
+
+
+                }
+               
+                   float readout4 = float.Parse(strEul[3]);
+                if (readout4 <0.5f){
+                    flowerMango.Pluck(3);
+
+
                 }
 
+                   float readout5 = float.Parse(strEul[4]);
+                if (readout5 <0.5f){
+                    flowerMango.Pluck(4);
+
+
+                }
+
+                 float readout6 = float.Parse(strEul[5]);
+                if (readout6 <0.5f){
+                    flowerMango.Pluck(5);
+
+
+                }
                 //Debug.Log(dist);
             }
         }
@@ -103,4 +128,5 @@ public class SerialFlower : MonoBehaviour
         if (serialPort != null && serialPort.IsOpen)
             serialPort.Close();
     }
+}
 }
