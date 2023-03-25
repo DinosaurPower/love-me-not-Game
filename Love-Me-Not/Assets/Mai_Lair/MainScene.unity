@@ -155,7 +155,7 @@ MonoBehaviour:
   sampleScene:
     m_Handle: 0
   Click: {fileID: 853330257}
-  timer: 0.1
+  timer: 0
   switchSceneWhenSoundIsOver: 
 --- !u!4 &394425038
 Transform:
@@ -639,7 +639,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 4ee2fb561a01f49bdb7d16c187cc78dd, type: 3}
+  m_audioClip: {fileID: 8300000, guid: f7d7409d9bf174bf9acd2c023d6e27fc, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -1162,7 +1162,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1294953251
 RectTransform:
   m_ObjectHideFlags: 0
