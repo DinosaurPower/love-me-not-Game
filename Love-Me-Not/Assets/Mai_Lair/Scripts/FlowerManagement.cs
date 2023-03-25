@@ -19,6 +19,7 @@ public class FlowerManagement : MonoBehaviour
     public GameObject animCenter;
    public GameObject reset;
    public RandomSoundScript randSound;
+   public Effects greyscale;
    void Start(){
     FlowerFaceValue = 0;
    }
@@ -37,7 +38,7 @@ public class FlowerManagement : MonoBehaviour
                 animCenter.GetComponent<Transform>().rotation = petals[c].GetComponent<Transform>().rotation;
                  GameObject petal = Instantiate(petalAnim, new Vector3(petals[c].GetComponent<Transform>().position.x, petals[c].GetComponent<Transform>().position.y, petals[c].GetComponent<Transform>().position.z), Quaternion.Euler(0, 0, petals[c].GetComponent<Transform>().rotation.z)) as GameObject;
                  petal.transform.SetParent (GameObject.FindGameObjectWithTag("Canvas").transform, false);
-                 
+                 greyscale.styleStrength+= 0.16f;
                  if (FlowerFaceValue >= 5)
                  {
                     reset.SetActive(true);
