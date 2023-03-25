@@ -19,6 +19,8 @@ public class FlowerManagement : MonoBehaviour
     public GameObject animCenter;
    public RandomSoundScript randSound;
    public Effects grayscale;
+   public int Rando;
+   public GameObject pseudoPetals;
    void Start(){
     FlowerFaceValue = 0;
    }
@@ -28,7 +30,8 @@ public class FlowerManagement : MonoBehaviour
             if (Input.GetKeyDown(keycode[i])&&petals[i].activeSelf){
                 randSound.CallAudio();
                 petals[i].SetActive(false);
-                Divination.text = divinationOptions[Random.Range(0, divinationOptions.Length)];
+                Rando = Random.Range(0, divinationOptions.Length);
+                Divination.text = divinationOptions[Rando];
                  FlowerFaceValue++;
                  flowerFace.sprite = agFace;
                  animCenter.GetComponent<Transform>().position = petals[i].GetComponent<Transform>().position;
@@ -42,8 +45,17 @@ public class FlowerManagement : MonoBehaviour
                 flowerFace.sprite = calmFaces[FlowerFaceValue];
             }
             if (Input.GetKeyDown(keycode[i])){
-                Debug.Log("Petal "+keycode[i].ToString()+" is inactive");
+               // Debug.Log("Petal "+keycode[i].ToString()+" is inactive");
             }
+        }
+
+        if (FlowerFaceValue == calmFaces.Length-1){
+           if (Rando == 0){
+            grayscale.styleStrength = 0;
+            pseudoPetals.SetActive(true);
+            flowerFace.sprite = calmFaces[0];
+
+           }
         }
         
 
